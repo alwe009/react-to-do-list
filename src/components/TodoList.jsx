@@ -9,10 +9,25 @@ export default function TodoList() {
     if (!newTodo.text) {
       return;
     }
-
     const newTodos = [newTodo, ...todos];
-
     setTodos(newTodos);
+  };
+
+  const removeTodo = (id) => {
+    const newTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
+  const updateTodo = (todoId, newValue) => {
+    if (!newValue) {
+      return;
+    }
+    const newTodos = todos.map((item) =>
+      item.id === todoId ? newValue : item
+    );
+    setTodos((prev) => {
+      prev.map((item) => (item.id === todoId ? newValue : item));
+    });
   };
 
   return (
@@ -23,7 +38,7 @@ export default function TodoList() {
       <hr />
       <br />
       <br />
-      <TodoBody todos={todos} />
+      <TodoBody todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
     </header>
   );
 }

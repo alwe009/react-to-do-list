@@ -11,6 +11,8 @@ export default function TodoHeader({ addTodo }) {
       text: input,
     });
     setInput("");
+
+    const initialForm = () => {};
   };
   return (
     <form onSubmit={handleSubmit} className="new-task-form">
